@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom editor styles */
+@layer components {
+  .editor-container {
+    @apply border border-editor-border rounded-lg bg-editor-background shadow-sm;
+  }
+
+  .editor-toolbar {
+    @apply flex items-center gap-2 p-3 border-b border-editor-border bg-gray-50;
+  }
+
+  .editor-content {
+    @apply p-4 min-h-[200px] focus:outline-none;
+  }
+
+  .editor-placeholder {
+    @apply text-editor-text-muted pointer-events-none;
+  }
+
+  .toolbar-button {
+    @apply p-2 rounded hover:bg-gray-200 transition-colors duration-200;
+  }
+
+  .toolbar-button.active {
+    @apply bg-editor-primary text-white;
+  }
+}
