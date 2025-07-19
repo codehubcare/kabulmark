@@ -1,10 +1,15 @@
 {
   "name": "kabulmark",
   "version": "1.0.0",
-  "description": "React based HTML editor",
-  "main": "index.js",
+  "description": "React based HTML editor, test",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "keywords": [
     "html",
@@ -15,5 +20,12 @@
     "editor"
   ],
   "author": "Shamshad Zaheer",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@lexical/react": "^0.33.1",
+    "lexical": "^0.33.1"
+  }
 }
