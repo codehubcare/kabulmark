@@ -1,1 +1,1 @@
-export { default, KabulMarkEditor } from "./editor";
+export { default, KabulMarkEditor } from "./Editor";
