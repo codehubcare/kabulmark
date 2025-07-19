@@ -1,26 +1,32 @@
 {
   "name": "kabulmark",
   "version": "1.0.0",
-  "description": "React based HTML editor, test",
+  "description": "React based HTML editor",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
   },
   "keywords": [
     "html",
     "editor",
     "kabulmark",
-    "editor",
     "react",
-    "editor"
+    "lexical"
   ],
   "author": "Shamshad Zaheer",
   "license": "ISC",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
   "devDependencies": {
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
@@ -28,8 +34,6 @@
   },
   "dependencies": {
     "@lexical/react": "^0.33.1",
-    "lexical": "^0.33.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "lexical": "^0.33.1"
   }
 }
