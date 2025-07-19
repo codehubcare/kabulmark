@@ -3,7 +3,9 @@ import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import HtmlOutput from "./plugins/HtmlOutput";
 import Toolbar from "./plugins/Toolbar";
 import "./styles.css";
 
@@ -11,12 +13,14 @@ interface KabulMarkEditorProps {
   value?: string;
   placeholder?: string;
   className?: string;
+  showHtmlOutput?: boolean;
 }
 
 function KabulMarkEditor({
   value,
   placeholder = "Start writing your content...",
-  className
+  className,
+  showHtmlOutput = false
 }: KabulMarkEditorProps) {
   const initialConfig = {
     namespace: "KabulMarkEditor",
@@ -32,6 +36,10 @@ function KabulMarkEditor({
         h1: "text-3xl font-bold mb-4",
         h2: "text-2xl font-bold mb-3",
         h3: "text-xl font-bold mb-2"
+      },
+      list: {
+        ul: "list-disc",
+        ol: "list-decimal"
       }
     },
     onError: (error: Error) => {
@@ -54,7 +62,9 @@ function KabulMarkEditor({
           }
           ErrorBoundary={LexicalErrorBoundary}
         />
+        {showHtmlOutput && <HtmlOutput />}
         <HistoryPlugin />
+        <ListPlugin />
       </LexicalComposer>
     </div>
   );
