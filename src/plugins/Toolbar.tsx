@@ -1,8 +1,23 @@
 // Build toolbar lexical plugin for the editor
 
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { FORMAT_TEXT_COMMAND, REDO_COMMAND, UNDO_COMMAND } from "lexical";
-import { Bold, Italic, Redo, Underline, Undo } from "lucide-react";
+import {
+  FORMAT_ELEMENT_COMMAND,
+  FORMAT_TEXT_COMMAND,
+  REDO_COMMAND,
+  UNDO_COMMAND
+} from "lexical";
+import {
+  AlignCenter,
+  AlignJustify,
+  AlignLeft,
+  AlignRight,
+  Bold,
+  Italic,
+  Redo,
+  Underline,
+  Undo
+} from "lucide-react";
 import Divider from "../shared/Divider";
 
 const Toolbar = () => {
@@ -28,6 +43,22 @@ const Toolbar = () => {
     editor.dispatchCommand(REDO_COMMAND, undefined);
   };
 
+  const handleAlignLeft = () => {
+    editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "left");
+  };
+
+  const handleAlignCenter = () => {
+    editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "center");
+  };
+
+  const handleAlignRight = () => {
+    editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "right");
+  };
+
+  const handleAlignJustify = () => {
+    editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "justify");
+  };
+
   return (
     <div className="flex gap-2 bg-gray-100 p-2 rounded-md shadow-md border border-gray-200">
       <button className="toolbar-button" title="Undo" onClick={handleUndo}>
@@ -51,6 +82,38 @@ const Toolbar = () => {
         onClick={handleUnderline}
       >
         <Underline className="w-4 h-4" />
+      </button>
+
+      <Divider />
+
+      {/* Text alignment buttons */}
+      <button
+        className="toolbar-button"
+        title="Align Left"
+        onClick={handleAlignLeft}
+      >
+        <AlignLeft className="w-4 h-4" />
+      </button>
+      <button
+        className="toolbar-button"
+        title="Align Center"
+        onClick={handleAlignCenter}
+      >
+        <AlignCenter className="w-4 h-4" />
+      </button>
+      <button
+        className="toolbar-button"
+        title="Align Right"
+        onClick={handleAlignRight}
+      >
+        <AlignRight className="w-4 h-4" />
+      </button>
+      <button
+        className="toolbar-button"
+        title="Align Justify"
+        onClick={handleAlignJustify}
+      >
+        <AlignJustify className="w-4 h-4" />
       </button>
     </div>
   );
