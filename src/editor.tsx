@@ -1,3 +1,4 @@
+import { ListItemNode, ListNode } from "@lexical/list";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
@@ -19,6 +20,7 @@ function KabulMarkEditor({
 }: KabulMarkEditorProps) {
   const initialConfig = {
     namespace: "KabulMarkEditor",
+    nodes: [ListNode, ListItemNode],
     theme: {
       text: {
         bold: "font-bold",

@@ -1,5 +1,3 @@
-// Build toolbar lexical plugin for the editor
-
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import {
   FORMAT_ELEMENT_COMMAND,
@@ -7,6 +5,12 @@ import {
   REDO_COMMAND,
   UNDO_COMMAND
 } from "lexical";
+
+import {
+  INSERT_ORDERED_LIST_COMMAND,
+  INSERT_UNORDERED_LIST_COMMAND
+} from "@lexical/list";
+
 import {
   AlignCenter,
   AlignJustify,
@@ -14,6 +18,8 @@ import {
   AlignRight,
   Bold,
   Italic,
+  List,
+  ListOrdered,
   Redo,
   Underline,
   Undo
@@ -57,6 +63,14 @@ const Toolbar = () => {
 
   const handleAlignJustify = () => {
     editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "justify");
+  };
+
+  const handleBulletList = () => {
+    editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined);
+  };
+
+  const handleNumberedList = () => {
+    editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined);
   };
 
   return (
@@ -114,6 +128,24 @@ const Toolbar = () => {
         onClick={handleAlignJustify}
       >
         <AlignJustify className="w-4 h-4" />
+      </button>
+
+      <Divider />
+
+      {/* List buttons */}
+      <button
+        className="toolbar-button"
+        title="Bullet List"
+        onClick={handleBulletList}
+      >
+        <List className="w-4 h-4" />
+      </button>
+      <button
+        className="toolbar-button"
+        title="Numbered List"
+        onClick={handleNumberedList}
+      >
+        <ListOrdered className="w-4 h-4" />
       </button>
     </div>
   );
