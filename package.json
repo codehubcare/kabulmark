@@ -1,0 +1,19 @@
+{
+  "name": "kabulmark",
+  "version": "1.0.0",
+  "description": "React based HTML editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "html",
+    "editor",
+    "kabulmark",
+    "editor",
+    "react",
+    "editor"
+  ],
+  "author": "Shamshad Zaheer",
+  "license": "ISC"
+}
