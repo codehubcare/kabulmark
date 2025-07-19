@@ -4,7 +4,7 @@ import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 
-function Editor() {
+function KabulMarkEditor() {
   return (
     <LexicalComposer
       initialConfig={{
@@ -29,4 +29,5 @@ function Editor() {
   );
 }
 
-export default Editor;
+export { KabulMarkEditor };
+export default KabulMarkEditor;
