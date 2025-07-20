@@ -1,14 +1,13 @@
 import { LinkNode } from "@lexical/link";
 import { ListItemNode, ListNode } from "@lexical/list";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
+import EditorContent from "./plugins/EditorContent";
 import HtmlOutput from "./plugins/HtmlOutput";
+import InitialContentPlugin from "./plugins/InitialContent";
 import Toolbar from "./plugins/Toolbar";
 import "./styles.css";
 
@@ -67,20 +66,8 @@ function KabulMarkEditor({
     <div className={`editor-container ${className}`}>
       <LexicalComposer initialConfig={initialConfig}>
         {showToolbar && <Toolbar />}
-        <RichTextPlugin
-          contentEditable={
-            <ContentEditable
-              className="editor-content font-editor text-editor-text"
-              style={{ height: height, overflowY: "auto" }}
-            />
-          }
-          placeholder={
-            <div className="editor-placeholder absolute top-4 left-4">
-              {placeholder}
-            </div>
-          }
-          ErrorBoundary={LexicalErrorBoundary}
-        />
+        <EditorContent placeholder={placeholder} height={height} />
+        <InitialContentPlugin initialHtml={value} />
         {showHtmlOutput && <HtmlOutput />}
         <HistoryPlugin />
         <ListPlugin />

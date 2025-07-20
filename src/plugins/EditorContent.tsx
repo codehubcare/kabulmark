@@ -1,0 +1,46 @@
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { ContentEditable } from "@lexical/react/LexicalContentEditable";
+import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
+import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { $getRoot } from "lexical";
+import { useEffect, useState } from "react";
+
+export default function EditorContent({
+  placeholder,
+  height
+}: {
+  placeholder: string;
+  height: string;
+}) {
+  const [editor] = useLexicalComposerContext();
+  const [isEmpty, setIsEmpty] = useState(true);
+
+  useEffect(() => {
+    const unregister = editor.registerUpdateListener(({ editorState }) => {
+      editorState.read(() => {
+        setIsEmpty($getRoot().getChildrenSize() === 0);
+      });
+    });
+    return unregister;
+  }, [editor]);
+
+  return (
+    <div className="relative">
+      <RichTextPlugin
+        contentEditable={
+          <ContentEditable
+            className="editor-content font-editor text-editor-text"
+            style={{ height, overflowY: "auto" }}
+          />
+        }
+        placeholder={null}
+        ErrorBoundary={LexicalErrorBoundary}
+      />
+      {isEmpty && (
+        <div className="editor-placeholder absolute top-4 left-4">
+          {placeholder}
+        </div>
+      )}
+    </div>
+  );
+}
