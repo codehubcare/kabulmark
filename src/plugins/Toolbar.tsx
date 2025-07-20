@@ -107,7 +107,7 @@ const Toolbar = () => {
           if (blockElement && $isElementNode(blockElement)) {
             if ($isHeadingNode(blockElement)) {
               newBlockType = blockElement.getTag();
-            } else if ($isQuoteNode(element)) {
+            } else if ($isQuoteNode(blockElement)) {
               newBlockType = "quote";
             }
           }
@@ -179,7 +179,9 @@ const Toolbar = () => {
             return $createQuoteNode();
           }
           if (newType.startsWith("h")) {
-            return $createHeadingNode(newType);
+            return $createHeadingNode(
+              newType as "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+            );
           }
           return $createParagraphNode();
         });
@@ -187,23 +189,20 @@ const Toolbar = () => {
     });
   };
 
-  const getButtonClass = (isActive: boolean) => {
-    return `toolbar-button ${
-      isActive ? "bg-blue-500 text-white" : "hover:bg-gray-200"
-    }`;
-  };
+  const getButtonClass = (isActive: boolean) =>
+    `toolbar-button ${isActive ? "active" : ""}`;
 
   return (
-    <div className="flex gap-2 bg-gray-100 p-2 rounded-md shadow-md border border-gray-200">
+    <div className="editor-toolbar flex flex-wrap items-center gap-2 p-3 border-b border-editor-border bg-gray-50 flex-grow">
       <button
-        className="toolbar-button hover:bg-gray-200"
+        className="toolbar-button"
         title="Undo (Ctrl+Z)"
         onClick={handleUndo}
       >
         <Undo className="w-4 h-4" />
       </button>
       <button
-        className="toolbar-button hover:bg-gray-200"
+        className="toolbar-button"
         title="Redo (Ctrl+Y)"
         onClick={handleRedo}
       >
