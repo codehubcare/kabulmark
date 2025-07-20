@@ -9,7 +9,7 @@ import EditorContent from "./plugins/EditorContent";
 import HtmlOutput from "./plugins/HtmlOutput";
 import InitialContentPlugin from "./plugins/InitialContent";
 import OnChangePlugin from "./plugins/OnChangePlugin";
-import Toolbar from "./plugins/Toolbar";
+import Toolbar, { ToolbarConfig } from "./plugins/Toolbar";
 import "./styles.css";
 
 interface KabulMarkEditorProps {
@@ -22,7 +22,26 @@ interface KabulMarkEditorProps {
   height?: string;
   showToolbar?: boolean;
   onChange?: (html: string) => void;
+  toolbarConfig?: ToolbarConfig;
 }
+
+const defaultToolbarConfig: ToolbarConfig = {
+  showRedo: false,
+  showUndo: false,
+  showBold: true,
+  showItalic: true,
+  showUnderline: true,
+  showLink: false,
+  showAlignLeft: true,
+  showAlignCenter: true,
+  showAlignRight: true,
+  showAlignJustify: true,
+  showList: true,
+  showNumberedList: true,
+  showBulletList: true,
+  showHeadingSelect: true,
+  showDirectionButtons: false
+};
 
 function KabulMarkEditor({
   id,
@@ -33,7 +52,8 @@ function KabulMarkEditor({
   showHtmlOutput = false,
   showToolbar = true,
   height = "300px",
-  onChange
+  onChange,
+  toolbarConfig = defaultToolbarConfig
 }: KabulMarkEditorProps) {
   const initialConfig = {
     namespace: "KabulMarkEditor",
@@ -81,7 +101,7 @@ function KabulMarkEditor({
         id={id}
       >
         <LexicalComposer initialConfig={initialConfig}>
-          {showToolbar && <Toolbar />}
+          {showToolbar && <Toolbar toolbarConfig={toolbarConfig} />}
           <EditorContent placeholder={placeholder} height={height} />
           <InitialContentPlugin initialHtml={value} />
           {showHtmlOutput && <HtmlOutput />}
