@@ -25,11 +25,7 @@ npm install kabulmark
 
 Note: This package has peer dependencies on `react` and `react-dom` (version >=16.8.0). Make sure they are installed in your project.
 
-Don't forget to import the styles:
-
-```jsx
-import "kabulmark/styles.css";
-```
+Note: The component includes pre-built styles via Tailwind CSS. No additional style imports are required.
 
 ## Usage
 
