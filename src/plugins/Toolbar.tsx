@@ -203,6 +203,7 @@ const Toolbar = () => {
         title="Undo (Ctrl+Z)"
         aria-label="Undo"
         onClick={handleUndo}
+        type="button"
       >
         <Undo className="w-4 h-4" />
       </button>
@@ -211,6 +212,7 @@ const Toolbar = () => {
         title="Redo (Ctrl+Y)"
         aria-label="Redo"
         onClick={handleRedo}
+        type="button"
       >
         <Redo className="w-4 h-4" />
       </button>
@@ -222,6 +224,7 @@ const Toolbar = () => {
         title="Bold (Ctrl+B)"
         aria-label="Bold"
         onClick={handleBold}
+        type="button"
       >
         <Bold className="w-4 h-4" />
       </button>
@@ -230,6 +233,7 @@ const Toolbar = () => {
         title="Italic (Ctrl+I)"
         aria-label="Italic"
         onClick={handleItalic}
+        type="button"
       >
         <Italic className="w-4 h-4" />
       </button>
@@ -238,6 +242,7 @@ const Toolbar = () => {
         title="Underline (Ctrl+U)"
         aria-label="Underline"
         onClick={handleUnderline}
+        type="button"
       >
         <Underline className="w-4 h-4" />
       </button>
@@ -252,6 +257,7 @@ const Toolbar = () => {
         title="Align Left"
         aria-label="Align left"
         onClick={handleAlignLeft}
+        type="button"
       >
         <AlignLeft className="w-4 h-4" />
       </button>
@@ -260,6 +266,7 @@ const Toolbar = () => {
         title="Align Center"
         aria-label="Align center"
         onClick={handleAlignCenter}
+        type="button"
       >
         <AlignCenter className="w-4 h-4" />
       </button>
@@ -268,6 +275,7 @@ const Toolbar = () => {
         title="Align Right"
         aria-label="Align right"
         onClick={handleAlignRight}
+        type="button"
       >
         <AlignRight className="w-4 h-4" />
       </button>
@@ -276,6 +284,7 @@ const Toolbar = () => {
         title="Align Justify"
         aria-label="Align justify"
         onClick={handleAlignJustify}
+        type="button"
       >
         <AlignJustify className="w-4 h-4" />
       </button>
@@ -288,6 +297,7 @@ const Toolbar = () => {
         title="Bullet List"
         aria-label="Bullet list"
         onClick={handleBulletList}
+        type="button"
       >
         <List className="w-4 h-4" />
       </button>
@@ -296,6 +306,7 @@ const Toolbar = () => {
         title="Numbered List"
         aria-label="Numbered list"
         onClick={handleNumberedList}
+        type="button"
       >
         <ListOrdered className="w-4 h-4" />
       </button>
