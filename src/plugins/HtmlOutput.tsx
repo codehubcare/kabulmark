@@ -25,28 +25,7 @@ const HtmlOutput = () => {
         className="text-sm text-gray-100 whitespace-pre-wrap font-mono leading-relaxed"
         dir="ltr"
       >
-        <code
-          className="language-html"
-          dangerouslySetInnerHTML={{
-            __html: htmlContent
-              .replace(/&/g, "&amp;")
-              .replace(/</g, "&lt;")
-              .replace(/>/g, "&gt;")
-              .replace(
-                /&lt;(\/?[a-zA-Z][^&gt;]*)&gt;/g,
-                '<span class="text-blue-400">&lt;$1&gt;</span>'
-              )
-              .replace(/(\w+)=/g, '<span class="text-green-400">$1</span>=')
-              .replace(
-                /"([^"]*)"/g,
-                '"<span class="text-yellow-300">$1</span>"'
-              )
-              .replace(
-                /&lt;!--([^-]*)--&gt;/g,
-                '<span class="text-gray-500">&lt;!--$1--&gt;</span>'
-              )
-          }}
-        />
+        <code className="language-html">{htmlContent}</code>
       </pre>
     </div>
   );

@@ -21,6 +21,7 @@ import {
 
 import { $createParagraphNode } from "lexical";
 
+import { TOGGLE_LINK_COMMAND } from "@lexical/link";
 import {
   $isListItemNode,
   $isListNode,
@@ -37,13 +38,14 @@ import {
   AlignRight,
   Bold,
   Italic,
+  Link2,
   List,
   ListOrdered,
   Redo,
   Underline,
   Undo
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Divider from "../shared/Divider";
 
 const Toolbar = () => {
@@ -61,6 +63,11 @@ const Toolbar = () => {
     unordered: false
   });
   const [blockType, setBlockType] = useState<string>("paragraph");
+  const [isLinkActive, setIsLinkActive] = useState(false);
+  const [currentLinkUrl, setCurrentLinkUrl] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [url, setUrl] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     return editor.registerUpdateListener(({ editorState }) => {
@@ -230,6 +237,31 @@ const Toolbar = () => {
     });
   };
 
+  const handleLinkButton = () => {
+    editor.update(() => {
+      const selection = $getSelection();
+      if ($isRangeSelection(selection)) {
+        if (!selection.isCollapsed() || isLinkActive) {
+          setUrl(currentLinkUrl || "");
+          setModalOpen(true);
+        } else {
+          console.warn("Please select some text or place cursor in a link.");
+        }
+      }
+    });
+  };
+
+  const handleSubmit = () => {
+    editor.dispatchCommand(TOGGLE_LINK_COMMAND, url.trim() || null);
+    setModalOpen(false);
+  };
+
+  useEffect(() => {
+    if (modalOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [modalOpen]);
+
   const getButtonClass = (isActive: boolean) =>
     `toolbar-button ${isActive ? "active" : ""}`;
 
@@ -286,6 +318,16 @@ const Toolbar = () => {
         type="button"
       >
         <Underline className="w-4 h-4" />
+      </button>
+
+      <button
+        className={getButtonClass(isLinkActive)}
+        title="Insert Link"
+        aria-label="Insert link"
+        onClick={handleLinkButton}
+        type="button"
+      >
+        <Link2 className="w-4 h-4" />
       </button>
 
       <Divider />
@@ -388,6 +430,49 @@ const Toolbar = () => {
         <option value="h6">Heading 6</option>
         <option value="quote">Blockquote</option>
       </select>
+
+      {modalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-4 rounded-md shadow-lg w-96">
+            <h3 className="font-bold mb-2">
+              {isLinkActive ? "Edit Link" : "Insert Link"}
+            </h3>
+            <input
+              ref={inputRef}
+              type="url"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              placeholder="Enter URL (e.g., https://example.com)"
+              className="border p-2 w-full mb-2 rounded"
+            />
+            <div className="flex justify-end gap-2">
+              {isLinkActive && (
+                <button
+                  onClick={() => {
+                    editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
+                    setModalOpen(false);
+                  }}
+                  className="px-4 py-2 bg-red-500 text-white rounded"
+                >
+                  Remove
+                </button>
+              )}
+              <button
+                onClick={() => setModalOpen(false)}
+                className="px-4 py-2 bg-gray-200 rounded"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSubmit}
+                className="px-4 py-2 bg-blue-500 text-white rounded"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

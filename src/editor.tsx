@@ -44,6 +44,7 @@ function KabulMarkEditor({
         italic: "italic",
         underline: "underline"
       },
+      link: "text-blue-600 underline",
       paragraph: "mb-2",
       heading: {
         h1: "text-3xl font-bold mb-4",
