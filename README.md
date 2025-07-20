@@ -98,9 +98,13 @@ const customToolbar = {
 
 KabulMark is a lightweight wrapper around Meta's [Lexical](https://lexical.dev/) library, providing an easy-to-use React component for rich text editing. It simplifies integration while offering customization options for the toolbar and editor behavior.
 
-## Improvements and Contributions
+## Contributing
 
-This package is open for improvements! Some potential enhancements:
+KabulMark is open source and we welcome contributions from the community!
+
+### Suggested Improvements
+
+Here are some potential enhancements you could work on:
 
 - Add image upload and embedding support.
 - Implement code block highlighting.
@@ -108,7 +112,21 @@ This package is open for improvements! Some potential enhancements:
 - More customization options for themes.
 - Export to Markdown or other formats.
 
-Contributions are welcome! Fork the repository, make your changes, and submit a pull request.
+### How to Contribute
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository on GitHub.
+2. Clone your fork locally: `git clone https://github.com/your-username/kabulmark.git`
+3. Create a new branch for your changes: `git checkout -b feature/your-feature-name`
+4. Make your changes in the new branch.
+5. Commit your changes with descriptive messages.
+6. Push your branch to your fork: `git push origin feature/your-feature-name`
+7. Create a pull request from your branch to the main repository.
+
+Please make sure to update tests as appropriate and adhere to the project's coding style.
+
+If you have questions, open an issue.
 
 ## Author
 
