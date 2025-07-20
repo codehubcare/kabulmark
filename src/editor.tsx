@@ -5,12 +5,15 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
+import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
+import { TRANSFORMERS } from "@lexical/markdown";
 import EditorContent from "./plugins/EditorContent";
 import HtmlOutput from "./plugins/HtmlOutput";
 import InitialContentPlugin from "./plugins/InitialContent";
 import OnChangePlugin from "./plugins/OnChangePlugin";
 import Toolbar, { ToolbarConfig } from "./plugins/Toolbar";
 import "./styles.css";
+import { CodeNode } from "@lexical/code";
 
 interface KabulMarkEditorProps {
   id?: string;
@@ -57,7 +60,7 @@ function KabulMarkEditor({
 }: KabulMarkEditorProps) {
   const initialConfig = {
     namespace: "KabulMarkEditor",
-    nodes: [ListNode, ListItemNode, LinkNode, HeadingNode, QuoteNode],
+    nodes: [ListNode, ListItemNode, LinkNode, HeadingNode, QuoteNode, CodeNode],
     theme: {
       text: {
         bold: "font-bold",
@@ -109,6 +112,7 @@ function KabulMarkEditor({
           <HistoryPlugin />
           <ListPlugin />
           <LinkPlugin />
+          <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
         </LexicalComposer>
       </div>
       {error && <div className="text-red-500 mt-2">{error}</div>}
