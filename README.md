@@ -55,6 +55,10 @@ function App() {
 export default App;
 ```
 
+### Demo
+
+Try out a live example in this [CodeSandbox demo](https://codesandbox.io/p/sandbox/angry-swartz-zpch33).
+
 ### Props
 
 - `id` (string, optional): ID for the editor container.
