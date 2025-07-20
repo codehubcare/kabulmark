@@ -2,6 +2,10 @@ import { $generateHtmlFromNodes } from "@lexical/html";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { useEffect, useState } from "react";
 
+/**
+ * This plugin is used to generate HTML from the editor content.
+ * It is used or the debugging purpose.
+ */
 const HtmlOutput = () => {
   const [editor] = useLexicalComposerContext();
   const [htmlContent, setHtmlContent] = useState("");
