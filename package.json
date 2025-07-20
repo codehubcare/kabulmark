@@ -1,7 +1,7 @@
 {
   "name": "kabulmark",
   "version": "1.0.0",
-  "description": "React based HTML editor",
+  "description": "A React-based rich text editor built as a wrapper over Meta's Lexical library.",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
