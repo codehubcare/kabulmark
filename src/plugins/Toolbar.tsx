@@ -12,6 +12,15 @@ import {
 } from "lexical";
 
 import {
+  $createHeadingNode,
+  $createQuoteNode,
+  $isHeadingNode,
+  $isQuoteNode
+} from "@lexical/rich-text";
+
+import { $createParagraphNode } from "lexical";
+
+import {
   $isListItemNode,
   $isListNode,
   INSERT_ORDERED_LIST_COMMAND,
@@ -19,6 +28,7 @@ import {
   ListNode,
   REMOVE_LIST_COMMAND
 } from "@lexical/list";
+import { $setBlocksType } from "@lexical/selection";
 import {
   AlignCenter,
   AlignJustify,
@@ -46,6 +56,7 @@ const Toolbar = () => {
     ordered: false,
     unordered: false
   });
+  const [blockType, setBlockType] = useState<string>("paragraph");
 
   useEffect(() => {
     return editor.registerUpdateListener(({ editorState }) => {
@@ -90,6 +101,17 @@ const Toolbar = () => {
             ordered: listNode ? listNode.getListType() === "number" : false,
             unordered: listNode ? listNode.getListType() === "bullet" : false
           });
+          // Track block type
+          const blockElement = anchorNode.getTopLevelElement();
+          let newBlockType = "paragraph";
+          if (blockElement && $isElementNode(blockElement)) {
+            if ($isHeadingNode(blockElement)) {
+              newBlockType = blockElement.getTag();
+            } else if ($isQuoteNode(element)) {
+              newBlockType = "quote";
+            }
+          }
+          setBlockType(newBlockType);
         }
       });
     });
@@ -145,6 +167,24 @@ const Toolbar = () => {
     } else {
       editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined);
     }
+  };
+
+  const formatBlock = (newType: string) => {
+    if (newType === blockType) return;
+    editor.update(() => {
+      const selection = $getSelection();
+      if ($isRangeSelection(selection)) {
+        $setBlocksType(selection, () => {
+          if (newType === "quote") {
+            return $createQuoteNode();
+          }
+          if (newType.startsWith("h")) {
+            return $createHeadingNode(newType);
+          }
+          return $createParagraphNode();
+        });
+      }
+    });
   };
 
   const getButtonClass = (isActive: boolean) => {
@@ -245,6 +285,23 @@ const Toolbar = () => {
       >
         <ListOrdered className="w-4 h-4" />
       </button>
+
+      <Divider />
+
+      <select
+        value={blockType}
+        onChange={(e) => formatBlock(e.target.value)}
+        className="px-2 py-1 bg-white border border-gray-200 rounded-md text-sm"
+      >
+        <option value="paragraph">Paragraph</option>
+        <option value="h1">Heading 1</option>
+        <option value="h2">Heading 2</option>
+        <option value="h3">Heading 3</option>
+        <option value="h4">Heading 4</option>
+        <option value="h5">Heading 5</option>
+        <option value="h6">Heading 6</option>
+        <option value="quote">Blockquote</option>
+      </select>
     </div>
   );
 };

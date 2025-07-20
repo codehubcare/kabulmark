@@ -7,6 +7,7 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import HtmlOutput from "./plugins/HtmlOutput";
 import Toolbar from "./plugins/Toolbar";
 import "./styles.css";
@@ -30,7 +31,7 @@ function KabulMarkEditor({
 }: KabulMarkEditorProps) {
   const initialConfig = {
     namespace: "KabulMarkEditor",
-    nodes: [ListNode, ListItemNode, LinkNode],
+    nodes: [ListNode, ListItemNode, LinkNode, HeadingNode, QuoteNode],
     theme: {
       text: {
         bold: "font-bold",
@@ -41,8 +42,12 @@ function KabulMarkEditor({
       heading: {
         h1: "text-3xl font-bold mb-4",
         h2: "text-2xl font-bold mb-3",
-        h3: "text-xl font-bold mb-2"
+        h3: "text-xl font-bold mb-2",
+        h4: "text-lg font-bold mb-2",
+        h5: "text-base font-bold mb-2",
+        h6: "text-sm font-bold mb-2"
       },
+      quote: "border-l-4 border-gray-300 pl-4 italic text-gray-600 mb-2",
       list: {
         ul: "list-disc ml-6 space-y-1",
         ol: "list-decimal ml-6 space-y-1",
