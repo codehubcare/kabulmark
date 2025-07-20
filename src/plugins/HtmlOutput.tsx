@@ -17,7 +17,7 @@ const HtmlOutput = () => {
 
   return (
     <div className="border border-gray-300 p-2 rounded-md">
-      <pre className="text-sm whitespace-pre-wrap ltr" dir="ltr">
+      <pre className="text-sm whitespace-pre-wrap" dir="ltr">
         {htmlContent}
       </pre>
     </div>

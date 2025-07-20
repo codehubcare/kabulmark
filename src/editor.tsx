@@ -1,8 +1,10 @@
+import { LinkNode } from "@lexical/link";
 import { ListItemNode, ListNode } from "@lexical/list";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import HtmlOutput from "./plugins/HtmlOutput";
@@ -24,7 +26,7 @@ function KabulMarkEditor({
 }: KabulMarkEditorProps) {
   const initialConfig = {
     namespace: "KabulMarkEditor",
-    nodes: [ListNode, ListItemNode],
+    nodes: [ListNode, ListItemNode, LinkNode],
     theme: {
       text: {
         bold: "font-bold",
@@ -65,6 +67,7 @@ function KabulMarkEditor({
         {showHtmlOutput && <HtmlOutput />}
         <HistoryPlugin />
         <ListPlugin />
+        <LinkPlugin />
       </LexicalComposer>
     </div>
   );
