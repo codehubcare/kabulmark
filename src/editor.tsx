@@ -66,7 +66,11 @@ function KabulMarkEditor({
   };
 
   return (
-    <div className={`editor-container ${className}`}>
+    <div
+      className={`editor-container ${className}`}
+      role="application"
+      aria-label="KabulMark rich text editor"
+    >
       <LexicalComposer initialConfig={initialConfig}>
         {showToolbar && <Toolbar />}
         <EditorContent placeholder={placeholder} height={height} />

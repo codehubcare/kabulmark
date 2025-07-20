@@ -33,6 +33,9 @@ export default function EditorContent({
           <ContentEditable
             className="editor-content font-editor text-editor-text"
             style={{ height, overflowY: "auto" }}
+            role="textbox"
+            aria-multiline="true"
+            aria-label="Rich text editing area"
           />
         }
         placeholder={null}

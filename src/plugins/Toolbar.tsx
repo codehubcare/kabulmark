@@ -193,10 +193,15 @@ const Toolbar = () => {
     `toolbar-button ${isActive ? "active" : ""}`;
 
   return (
-    <div className="editor-toolbar flex flex-wrap items-center gap-2 p-3 border-b border-editor-border bg-gray-50 flex-grow">
+    <div
+      className="editor-toolbar flex flex-wrap items-center gap-2 p-3 border-b border-editor-border bg-gray-50 flex-grow"
+      role="toolbar"
+      aria-label="Editor toolbar"
+    >
       <button
         className="toolbar-button"
         title="Undo (Ctrl+Z)"
+        aria-label="Undo"
         onClick={handleUndo}
       >
         <Undo className="w-4 h-4" />
@@ -204,6 +209,7 @@ const Toolbar = () => {
       <button
         className="toolbar-button"
         title="Redo (Ctrl+Y)"
+        aria-label="Redo"
         onClick={handleRedo}
       >
         <Redo className="w-4 h-4" />
@@ -214,6 +220,7 @@ const Toolbar = () => {
       <button
         className={getButtonClass(activeFormats.has("bold"))}
         title="Bold (Ctrl+B)"
+        aria-label="Bold"
         onClick={handleBold}
       >
         <Bold className="w-4 h-4" />
@@ -221,6 +228,7 @@ const Toolbar = () => {
       <button
         className={getButtonClass(activeFormats.has("italic"))}
         title="Italic (Ctrl+I)"
+        aria-label="Italic"
         onClick={handleItalic}
       >
         <Italic className="w-4 h-4" />
@@ -228,6 +236,7 @@ const Toolbar = () => {
       <button
         className={getButtonClass(activeFormats.has("underline"))}
         title="Underline (Ctrl+U)"
+        aria-label="Underline"
         onClick={handleUnderline}
       >
         <Underline className="w-4 h-4" />
@@ -241,6 +250,7 @@ const Toolbar = () => {
           activeAlignment === "left" || activeAlignment === ""
         )}
         title="Align Left"
+        aria-label="Align left"
         onClick={handleAlignLeft}
       >
         <AlignLeft className="w-4 h-4" />
@@ -248,6 +258,7 @@ const Toolbar = () => {
       <button
         className={getButtonClass(activeAlignment === "center")}
         title="Align Center"
+        aria-label="Align center"
         onClick={handleAlignCenter}
       >
         <AlignCenter className="w-4 h-4" />
@@ -255,6 +266,7 @@ const Toolbar = () => {
       <button
         className={getButtonClass(activeAlignment === "right")}
         title="Align Right"
+        aria-label="Align right"
         onClick={handleAlignRight}
       >
         <AlignRight className="w-4 h-4" />
@@ -262,6 +274,7 @@ const Toolbar = () => {
       <button
         className={getButtonClass(activeAlignment === "justify")}
         title="Align Justify"
+        aria-label="Align justify"
         onClick={handleAlignJustify}
       >
         <AlignJustify className="w-4 h-4" />
@@ -273,6 +286,7 @@ const Toolbar = () => {
       <button
         className={getButtonClass(isInList.unordered)}
         title="Bullet List"
+        aria-label="Bullet list"
         onClick={handleBulletList}
       >
         <List className="w-4 h-4" />
@@ -280,6 +294,7 @@ const Toolbar = () => {
       <button
         className={getButtonClass(isInList.ordered)}
         title="Numbered List"
+        aria-label="Numbered list"
         onClick={handleNumberedList}
       >
         <ListOrdered className="w-4 h-4" />
@@ -291,6 +306,7 @@ const Toolbar = () => {
         value={blockType}
         onChange={(e) => formatBlock(e.target.value)}
         className="px-2 py-1 bg-white border border-gray-200 rounded-md text-sm"
+        aria-label="Block type"
       >
         <option value="paragraph">Paragraph</option>
         <option value="h1">Heading 1</option>
