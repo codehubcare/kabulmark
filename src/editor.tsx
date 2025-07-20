@@ -16,13 +16,15 @@ interface KabulMarkEditorProps {
   placeholder?: string;
   className?: string;
   showHtmlOutput?: boolean;
+  height?: string;
 }
 
 function KabulMarkEditor({
   value,
   placeholder = "Start writing your content...",
   className,
-  showHtmlOutput = false
+  showHtmlOutput = false,
+  height = "300px"
 }: KabulMarkEditorProps) {
   const initialConfig = {
     namespace: "KabulMarkEditor",
@@ -40,8 +42,13 @@ function KabulMarkEditor({
         h3: "text-xl font-bold mb-2"
       },
       list: {
-        ul: "list-disc",
-        ol: "list-decimal"
+        ul: "list-disc ml-6 space-y-1",
+        ol: "list-decimal ml-6 space-y-1",
+        listitem: "pl-2",
+        nested: {
+          list: "ml-6 space-y-1",
+          listitem: "pl-2"
+        }
       }
     },
     onError: (error: Error) => {
@@ -55,7 +62,10 @@ function KabulMarkEditor({
         <Toolbar />
         <RichTextPlugin
           contentEditable={
-            <ContentEditable className="editor-content font-editor text-editor-text" />
+            <ContentEditable
+              className="editor-content font-editor text-editor-text"
+              style={{ height: height, overflowY: "auto" }}
+            />
           }
           placeholder={
             <div className="editor-placeholder absolute top-4 left-4">
