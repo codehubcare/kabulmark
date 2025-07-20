@@ -7,6 +7,7 @@ import {
   FORMAT_ELEMENT_COMMAND,
   FORMAT_TEXT_COMMAND,
   LexicalNode,
+  RangeSelection,
   REDO_COMMAND,
   UNDO_COMMAND
 } from "lexical";
@@ -49,6 +50,9 @@ const Toolbar = () => {
   const [editor] = useLexicalComposerContext();
   const [activeFormats, setActiveFormats] = useState<Set<string>>(new Set());
   const [activeAlignment, setActiveAlignment] = useState<string>("");
+  const [activeDirection, setActiveDirection] = useState<"ltr" | "rtl" | null>(
+    null
+  );
   const [isInList, setIsInList] = useState<{
     ordered: boolean;
     unordered: boolean;
@@ -75,6 +79,8 @@ const Toolbar = () => {
           if (element && $isElementNode(element)) {
             const formatType = element.getFormatType();
             setActiveAlignment(formatType);
+            const direction = element.getDirection() ?? null;
+            setActiveDirection(direction);
           }
 
           // Track list state
@@ -189,6 +195,41 @@ const Toolbar = () => {
     });
   };
 
+  const setBlocksDirection = (
+    selection: RangeSelection,
+    dir: "ltr" | "rtl" | null
+  ) => {
+    const selectedNodes = selection.getNodes();
+    const topLevelElements = new Set<ElementNode>();
+    for (const node of selectedNodes) {
+      const topLevel = node.getTopLevelElement();
+      if (topLevel && $isElementNode(topLevel)) {
+        topLevelElements.add(topLevel);
+      }
+    }
+    for (const element of topLevelElements) {
+      element.setDirection(dir);
+    }
+  };
+
+  const handleLTR = () => {
+    editor.update(() => {
+      const selection = $getSelection();
+      if ($isRangeSelection(selection)) {
+        setBlocksDirection(selection, activeDirection === "ltr" ? null : "ltr");
+      }
+    });
+  };
+
+  const handleRTL = () => {
+    editor.update(() => {
+      const selection = $getSelection();
+      if ($isRangeSelection(selection)) {
+        setBlocksDirection(selection, activeDirection === "rtl" ? null : "rtl");
+      }
+    });
+  };
+
   const getButtonClass = (isActive: boolean) =>
     `toolbar-button ${isActive ? "active" : ""}`;
 
@@ -287,6 +328,25 @@ const Toolbar = () => {
         type="button"
       >
         <AlignJustify className="w-4 h-4" />
+      </button>
+
+      <button
+        className={getButtonClass(activeDirection === "ltr")}
+        title="Left-to-right direction"
+        aria-label="Set left-to-right direction"
+        onClick={handleLTR}
+        type="button"
+      >
+        <span className="text-xs font-bold">LTR</span>
+      </button>
+      <button
+        className={getButtonClass(activeDirection === "rtl")}
+        title="Right-to-left direction"
+        aria-label="Set right-to-left direction"
+        onClick={handleRTL}
+        type="button"
+      >
+        <span className="text-xs font-bold">RTL</span>
       </button>
 
       <Divider />

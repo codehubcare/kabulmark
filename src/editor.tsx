@@ -62,7 +62,9 @@ function KabulMarkEditor({
           list: "ml-6 space-y-1",
           listitem: "pl-2"
         }
-      }
+      },
+      rtl: "text-right",
+      ltr: "text-left"
     },
     onError: (error: Error) => {
       console.error(error);
