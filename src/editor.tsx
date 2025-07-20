@@ -13,6 +13,8 @@ import Toolbar from "./plugins/Toolbar";
 import "./styles.css";
 
 interface KabulMarkEditorProps {
+  id?: string;
+  error?: string;
   value?: string;
   placeholder?: string;
   className?: string;
@@ -23,6 +25,8 @@ interface KabulMarkEditorProps {
 }
 
 function KabulMarkEditor({
+  id,
+  error,
   value,
   placeholder = "Start writing your content...",
   className,
@@ -66,22 +70,26 @@ function KabulMarkEditor({
   };
 
   return (
-    <div
-      className={`editor-container ${className}`}
-      role="application"
-      aria-label="KabulMark rich text editor"
-    >
-      <LexicalComposer initialConfig={initialConfig}>
-        {showToolbar && <Toolbar />}
-        <EditorContent placeholder={placeholder} height={height} />
-        <InitialContentPlugin initialHtml={value} />
-        {showHtmlOutput && <HtmlOutput />}
-        <OnChangePlugin onChange={onChange} />
-        <HistoryPlugin />
-        <ListPlugin />
-        <LinkPlugin />
-      </LexicalComposer>
-    </div>
+    <>
+      <div
+        className={`editor-container ${className}`}
+        role="application"
+        aria-label="KabulMark rich text editor"
+        id={id}
+      >
+        <LexicalComposer initialConfig={initialConfig}>
+          {showToolbar && <Toolbar />}
+          <EditorContent placeholder={placeholder} height={height} />
+          <InitialContentPlugin initialHtml={value} />
+          {showHtmlOutput && <HtmlOutput />}
+          <OnChangePlugin onChange={onChange} />
+          <HistoryPlugin />
+          <ListPlugin />
+          <LinkPlugin />
+        </LexicalComposer>
+      </div>
+      {error && <div className="text-red-500 mt-2">{error}</div>}
+    </>
   );
 }
 
