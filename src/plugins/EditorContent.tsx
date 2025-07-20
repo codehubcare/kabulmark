@@ -5,13 +5,15 @@ import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { $getRoot } from "lexical";
 import { useEffect, useState } from "react";
 
+interface EditorContentProps {
+  placeholder: string;
+  height: string;
+}
+
 export default function EditorContent({
   placeholder,
   height
-}: {
-  placeholder: string;
-  height: string;
-}) {
+}: EditorContentProps) {
   const [editor] = useLexicalComposerContext();
   const [isEmpty, setIsEmpty] = useState(true);
 

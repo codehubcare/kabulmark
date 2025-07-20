@@ -8,6 +8,7 @@ import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import EditorContent from "./plugins/EditorContent";
 import HtmlOutput from "./plugins/HtmlOutput";
 import InitialContentPlugin from "./plugins/InitialContent";
+import OnChangePlugin from "./plugins/OnChangePlugin";
 import Toolbar from "./plugins/Toolbar";
 import "./styles.css";
 
@@ -18,6 +19,7 @@ interface KabulMarkEditorProps {
   showHtmlOutput?: boolean;
   height?: string;
   showToolbar?: boolean;
+  onChange?: (html: string) => void;
 }
 
 function KabulMarkEditor({
@@ -26,7 +28,8 @@ function KabulMarkEditor({
   className,
   showHtmlOutput = false,
   showToolbar = true,
-  height = "300px"
+  height = "300px",
+  onChange
 }: KabulMarkEditorProps) {
   const initialConfig = {
     namespace: "KabulMarkEditor",
@@ -69,6 +72,7 @@ function KabulMarkEditor({
         <EditorContent placeholder={placeholder} height={height} />
         <InitialContentPlugin initialHtml={value} />
         {showHtmlOutput && <HtmlOutput />}
+        <OnChangePlugin onChange={onChange} />
         <HistoryPlugin />
         <ListPlugin />
         <LinkPlugin />
