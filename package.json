@@ -24,14 +24,22 @@
     "prebuild": "npm run clean"
   },
   "keywords": [
-    "html",
-    "editor",
-    "kabulmark",
     "react",
-    "lexical"
+    "editor",
+    "rich-text-editor",
+    "wysiwyg",
+    "lexical",
+    "text-formatting",
+    "markdown",
+    "html-editor",
+    "content-editor",
+    "kabulmark",
+    "javascript",
+    "typescript",
+    "ui-component"
   ],
   "author": "Shamshad Zaheer",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
