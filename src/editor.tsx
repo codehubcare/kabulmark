@@ -17,6 +17,7 @@ interface KabulMarkEditorProps {
   className?: string;
   showHtmlOutput?: boolean;
   height?: string;
+  showToolbar?: boolean;
 }
 
 function KabulMarkEditor({
@@ -24,6 +25,7 @@ function KabulMarkEditor({
   placeholder = "Start writing your content...",
   className,
   showHtmlOutput = false,
+  showToolbar = true,
   height = "300px"
 }: KabulMarkEditorProps) {
   const initialConfig = {
@@ -59,7 +61,7 @@ function KabulMarkEditor({
   return (
     <div className={`editor-container ${className}`}>
       <LexicalComposer initialConfig={initialConfig}>
-        <Toolbar />
+        {showToolbar && <Toolbar />}
         <RichTextPlugin
           contentEditable={
             <ContentEditable
