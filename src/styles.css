@@ -1,30 +1,29 @@
-@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Custom editor styles */
 @layer components {
   .editor-container {
-    @apply border border-editor-border rounded-lg bg-editor-background shadow-sm;
+    @apply km-border km-border-editor-border km-rounded-lg km-bg-editor-background km-shadow-sm;
   }
 
   .editor-toolbar {
-    @apply flex items-center gap-2 p-3 border-b border-editor-border bg-gray-50;
+    @apply km-flex km-items-center km-gap-2 km-p-3 km-border-b km-border-editor-border km-bg-gray-50;
   }
 
   .editor-content {
-    @apply p-4 min-h-[200px] focus:outline-none;
+    @apply km-p-4 km-min-h-[200px] focus:km-outline-none;
   }
 
   .editor-placeholder {
-    @apply text-editor-text-muted pointer-events-none;
+    @apply km-text-editor-text-muted km-pointer-events-none;
   }
 
   .toolbar-button {
-    @apply p-2 rounded hover:bg-gray-200 transition-colors duration-200;
+    @apply km-p-2 km-rounded hover:km-bg-gray-200 km-transition-colors km-duration-200;
   }
 
   .toolbar-button.active {
-    @apply bg-editor-primary text-white;
+    @apply km-bg-editor-primary km-text-white;
   }
 }

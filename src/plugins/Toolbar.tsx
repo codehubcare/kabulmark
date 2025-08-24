@@ -47,6 +47,7 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Divider from "../shared/Divider";
+import km from "../shared/km";
 
 export interface ToolbarConfig {
   showRedo?: boolean;
@@ -307,7 +308,9 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
 
   return (
     <div
-      className="editor-toolbar flex flex-wrap items-center gap-2 p-3 border-b border-editor-border bg-gray-50 flex-grow"
+      className={km(
+        "editor-toolbar flex flex-wrap items-center gap-2 p-3 border-b border-editor-border bg-gray-50 flex-grow"
+      )}
       role="toolbar"
       aria-label="Editor toolbar"
     >
@@ -319,7 +322,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
           onClick={handleUndo}
           type="button"
         >
-          <Undo className="w-4 h-4" />
+          <Undo className={km("w-4 h-4")} />
         </button>
       )}
       {showRedo && (
@@ -330,7 +333,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
           onClick={handleRedo}
           type="button"
         >
-          <Redo className="w-4 h-4" />
+          <Redo className={km("w-4 h-4")} />
         </button>
       )}
       {(showUndo || showRedo) &&
@@ -343,7 +346,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
           onClick={handleBold}
           type="button"
         >
-          <Bold className="w-4 h-4" />
+          <Bold className={km("w-4 h-4")} />
         </button>
       )}
       {showItalic && (
@@ -354,7 +357,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
           onClick={handleItalic}
           type="button"
         >
-          <Italic className="w-4 h-4" />
+          <Italic className={km("w-4 h-4")} />
         </button>
       )}
       {showUnderline && (
@@ -365,7 +368,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
           onClick={handleUnderline}
           type="button"
         >
-          <Underline className="w-4 h-4" />
+          <Underline className={km("w-4 h-4")} />
         </button>
       )}
       {showLink && (
@@ -376,7 +379,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
           onClick={handleLinkButton}
           type="button"
         >
-          <Link2 className="w-4 h-4" />
+          <Link2 className={km("w-4 h-4")} />
         </button>
       )}
       {(showBold || showItalic || showUnderline || showLink) &&
@@ -395,7 +398,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
           onClick={handleAlignLeft}
           type="button"
         >
-          <AlignLeft className="w-4 h-4" />
+          <AlignLeft className={km("w-4 h-4")} />
         </button>
       )}
       {showAlignCenter && (
@@ -406,7 +409,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
           onClick={handleAlignCenter}
           type="button"
         >
-          <AlignCenter className="w-4 h-4" />
+          <AlignCenter className={km("w-4 h-4")} />
         </button>
       )}
       {showAlignRight && (
@@ -417,7 +420,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
           onClick={handleAlignRight}
           type="button"
         >
-          <AlignRight className="w-4 h-4" />
+          <AlignRight className={km("w-4 h-4")} />
         </button>
       )}
       {showAlignJustify && (
@@ -428,7 +431,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
           onClick={handleAlignJustify}
           type="button"
         >
-          <AlignJustify className="w-4 h-4" />
+          <AlignJustify className={km("w-4 h-4")} />
         </button>
       )}
       {showDirectionButtons && (
@@ -440,7 +443,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
             onClick={handleLTR}
             type="button"
           >
-            <span className="text-xs font-bold">LTR</span>
+            <span className={km("text-xs font-bold")}>LTR</span>
           </button>
           <button
             className={getButtonClass(activeDirection === "rtl")}
@@ -449,7 +452,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
             onClick={handleRTL}
             type="button"
           >
-            <span className="text-xs font-bold">RTL</span>
+            <span className={km("text-xs font-bold")}>RTL</span>
           </button>
         </>
       )}
@@ -467,7 +470,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
           onClick={handleBulletList}
           type="button"
         >
-          <List className="w-4 h-4" />
+          <List className={km("w-4 h-4")} />
         </button>
       )}
       {showNumberedList && (
@@ -478,7 +481,7 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
           onClick={handleNumberedList}
           type="button"
         >
-          <ListOrdered className="w-4 h-4" />
+          <ListOrdered className={km("w-4 h-4")} />
         </button>
       )}
       {(showBulletList || showNumberedList || showList) &&
@@ -487,7 +490,9 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
         <select
           value={blockType}
           onChange={(e) => formatBlock(e.target.value)}
-          className="px-2 py-1 bg-white border border-gray-200 rounded-md text-sm"
+          className={km(
+            "px-2 py-1 bg-white border border-gray-200 rounded-md text-sm"
+          )}
           aria-label="Block type"
         >
           <option value="paragraph">Paragraph</option>
@@ -501,9 +506,13 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
         </select>
       )}
       {modalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-4 rounded-md shadow-lg w-96">
-            <h3 className="font-bold mb-2">
+        <div
+          className={km(
+            "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          )}
+        >
+          <div className={km("bg-white p-4 rounded-md shadow-lg w-96")}>
+            <h3 className={km("font-bold mb-2")}>
               {isLinkActive ? "Edit Link" : "Insert Link"}
             </h3>
             <input
@@ -512,29 +521,29 @@ const Toolbar = ({ toolbarConfig }: ToolbarProps) => {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="Enter URL (e.g., https://example.com)"
-              className="border p-2 w-full mb-2 rounded"
+              className={km("border p-2 w-full mb-2 rounded")}
             />
-            <div className="flex justify-end gap-2">
+            <div className={km("flex justify-end gap-2")}>
               {isLinkActive && (
                 <button
                   onClick={() => {
                     editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
                     setModalOpen(false);
                   }}
-                  className="px-4 py-2 bg-red-500 text-white rounded"
+                  className={km("px-4 py-2 bg-red-500 text-white rounded")}
                 >
                   Remove
                 </button>
               )}
               <button
                 onClick={() => setModalOpen(false)}
-                className="px-4 py-2 bg-gray-200 rounded"
+                className={km("px-4 py-2 bg-gray-200 rounded")}
               >
                 Cancel
               </button>
               <button
                 onClick={handleSubmit}
-                className="px-4 py-2 bg-blue-500 text-white rounded"
+                className={km("px-4 py-2 bg-blue-500 text-white rounded")}
               >
                 OK
               </button>

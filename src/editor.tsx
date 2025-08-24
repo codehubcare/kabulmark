@@ -1,19 +1,20 @@
+import { CodeNode } from "@lexical/code";
 import { LinkNode } from "@lexical/link";
 import { ListItemNode, ListNode } from "@lexical/list";
+import { TRANSFORMERS } from "@lexical/markdown";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
-import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
-import { TRANSFORMERS } from "@lexical/markdown";
+import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import EditorContent from "./plugins/EditorContent";
 import HtmlOutput from "./plugins/HtmlOutput";
 import InitialContentPlugin from "./plugins/InitialContent";
 import OnChangePlugin from "./plugins/OnChangePlugin";
 import Toolbar, { ToolbarConfig } from "./plugins/Toolbar";
+import km from "./shared/km";
 import "./styles.css";
-import { CodeNode } from "@lexical/code";
 
 interface KabulMarkEditorProps {
   id?: string;
@@ -63,32 +64,32 @@ function KabulMarkEditor({
     nodes: [ListNode, ListItemNode, LinkNode, HeadingNode, QuoteNode, CodeNode],
     theme: {
       text: {
-        bold: "font-bold",
-        italic: "italic",
-        underline: "underline"
+        bold: km("font-bold"),
+        italic: km("italic"),
+        underline: km("underline")
       },
-      link: "text-blue-600 underline",
-      paragraph: "mb-2",
+      link: km("text-blue-600 underline"),
+      paragraph: km("mb-2"),
       heading: {
-        h1: "text-3xl font-bold mb-4",
-        h2: "text-2xl font-bold mb-3",
-        h3: "text-xl font-bold mb-2",
-        h4: "text-lg font-bold mb-2",
-        h5: "text-base font-bold mb-2",
-        h6: "text-sm font-bold mb-2"
+        h1: km("text-3xl font-bold mb-4"),
+        h2: km("text-2xl font-bold mb-3"),
+        h3: km("text-xl font-bold mb-2"),
+        h4: km("text-lg font-bold mb-2"),
+        h5: km("text-base font-bold mb-2"),
+        h6: km("text-sm font-bold mb-2")
       },
-      quote: "border-l-4 border-gray-300 pl-4 italic text-gray-600 mb-2",
+      quote: km("border-l-4 border-gray-300 pl-4 italic text-gray-600 mb-2"),
       list: {
-        ul: "list-disc ml-6 space-y-1",
-        ol: "list-decimal ml-6 space-y-1",
-        listitem: "pl-2",
+        ul: km("list-disc ml-6 space-y-1"),
+        ol: km("list-decimal ml-6 space-y-1"),
+        listitem: km("pl-2"),
         nested: {
-          list: "ml-6 space-y-1",
-          listitem: "pl-2"
+          list: km("ml-6 space-y-1"),
+          listitem: km("pl-2")
         }
       },
-      rtl: "text-right",
-      ltr: "text-left"
+      rtl: km("text-right"),
+      ltr: km("text-left")
     },
     onError: (error: Error) => {
       console.error(error);

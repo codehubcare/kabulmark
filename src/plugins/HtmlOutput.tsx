@@ -1,6 +1,7 @@
 import { $generateHtmlFromNodes } from "@lexical/html";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { useEffect, useState } from "react";
+import km from "../shared/km";
 
 /**
  * This plugin is used to generate HTML from the editor content.
@@ -20,9 +21,15 @@ const HtmlOutput = () => {
   }, [editor]);
 
   return (
-    <div className="bg-gray-900 border border-gray-700 p-4 rounded-lg h-[300px] overflow-y-auto shadow-inner">
+    <div
+      className={km(
+        "bg-gray-900 border border-gray-700 p-4 rounded-lg h-[300px] overflow-y-auto shadow-inner"
+      )}
+    >
       <pre
-        className="text-sm text-gray-100 whitespace-pre-wrap font-mono leading-relaxed"
+        className={km(
+          "text-sm text-gray-100 whitespace-pre-wrap font-mono leading-relaxed"
+        )}
         dir="ltr"
       >
         <code className="language-html">{htmlContent}</code>

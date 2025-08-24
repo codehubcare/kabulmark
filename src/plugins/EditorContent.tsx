@@ -4,6 +4,7 @@ import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { $getRoot } from "lexical";
 import { useEffect, useState } from "react";
+import km from "../shared/km";
 
 interface EditorContentProps {
   placeholder: string;
@@ -27,11 +28,11 @@ export default function EditorContent({
   }, [editor]);
 
   return (
-    <div className="relative">
+    <div className={km("relative")}>
       <RichTextPlugin
         contentEditable={
           <ContentEditable
-            className="editor-content font-editor text-editor-text"
+            className={km("editor-content font-editor text-editor-text")}
             style={{ height, overflowY: "auto" }}
             role="textbox"
             aria-multiline="true"
@@ -42,7 +43,7 @@ export default function EditorContent({
         ErrorBoundary={LexicalErrorBoundary}
       />
       {isEmpty && (
-        <div className="editor-placeholder absolute top-4 left-4">
+        <div className={km("editor-placeholder absolute top-4 left-4")}>
           {placeholder}
         </div>
       )}

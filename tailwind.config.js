@@ -1,6 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./dist/**/*.{js,jsx,ts,tsx}"],
+  prefix: "km-",
+  corePlugins: {
+    preflight: false
+  },
+  safelist: [
+    {
+      // Keep dynamic background colors for Divider (e.g., km-bg-gray-200)
+      pattern:
+        /^(km-bg)-(slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(50|100|200|300|400|500|600|700|800|900)$/
+    }
+  ],
   theme: {
     extend: {
       colors: {
